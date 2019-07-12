@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbm.demo.mapper.FundInfoDao">
+
+    <resultMap type="com.sbm.demo.bean.FundInfo" id="fundInfo">
+
+        <result column="fundId" jdbcType="INTEGER" property="fundId"/>
+        <result column="fundName" jdbcType="VARCHAR" property="fundName"/>
+        <result column="dailyMoney" jdbcType="VARCHAR" property="dailyMoney"/>
+        <result column="rate" jdbcType="VARCHAR" property="rate"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into fundinfo(fundId,fundName,dailyMoney,rate) values(#{fundId},#{fundName},#{dailyMoney},#{rate})
+    </insert>
+
+    <update id="update">
+        update fundinfo set fundName = #{fundName} , dailyMoney = #{dailyMoney}, rate = #{rate} where fundId = #{fundId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from fundinfo where fundId = #{fundId}
+    </delete>
+
+    <!-- selectOne -->
+    <select id="selectOne" parameterType="int" resultMap="fundInfo">
+      select
+       *
+      from fundinfo  where fundId = #{fundId}
+    </select>
+
+</mapper>

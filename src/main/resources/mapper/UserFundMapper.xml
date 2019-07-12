@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbm.demo.mapper.UserFundDao">
+
+    <resultMap type="com.sbm.demo.bean.UserFund" id="userFund">
+        <result column="userId" jdbcType="INTEGER" property="userId"/>
+        <result column="fundId" jdbcType="INTEGER" property="fundId"/>
+        <result column="buyTime" jdbcType="VARCHAR" property="buyTime"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into userfund(userId,fundId,buyTime) values(#{userId},#{fundId},#{buyTime})
+    </insert>
+
+    <update id="update">
+        update userfund set fundId = #{fundId} , buyTime = #{buyTime} where userId = #{userId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from userfund where userId = #{userId}
+    </delete>
+
+    <!-- selectOne -->
+    <select id="selectOne" parameterType="int" resultMap="userFund">
+      select
+        *
+      from userfund where userId = #{userId}
+    </select>
+
+</mapper>

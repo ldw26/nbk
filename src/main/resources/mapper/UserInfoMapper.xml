@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbm.demo.mapper.UserInfoDao">
+
+    <resultMap type="com.sbm.demo.bean.UserInfo" id="userInfo">
+        <result column="userId" jdbcType="INTEGER" property="userId"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="registerDate" jdbcType="VARCHAR" property="registerDate"/>
+        <result column="deposit" jdbcType="VARCHAR" property="deposit"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="userName" jdbcType="INTEGER" property="userName"/>
+        <result column="adress" jdbcType="VARCHAR" property="adress"/>
+
+        <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="profession" jdbcType="VARCHAR" property="profession"/>
+
+    </resultMap>
+
+    <insert id="insert">
+        insert into userinfo(userId,email,registerDate,deposit,sex,userName,adress,phoneNumber,profession)
+        values(#{userId},#{email},#{registerDate},#{deposit},#{sex},#{userName},#{adress},#{phoneNumber},#{profession})
+    </insert>
+
+    <update id="update">
+        update userinfo set email = #{email} ,registerDate = #{registerDate},deposit = #{deposit},sex = #{sex},userName = #{userName},adress = #{adress},
+        phoneNumber = #{phoneNumber},profession = #{profession} where userId = #{userId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from userinfo where userId = #{userId}
+    </delete>
+
+    <!-- selectOne -->
+    <select id="selectOne" parameterType="int" resultMap="userInfo">
+      select
+       *
+      from userinfo where userId = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbm.demo.mapper.LoginDao">
+
+    <resultMap type="com.sbm.demo.bean.Login" id="login">
+        <result column="userid" jdbcType="INTEGER" property="userId"/>
+        <result column="logName" jdbcType="VARCHAR" property="logName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+
+    <insert id="insert">
+        insert into login(userid,logName,password) values(#{userid},#{logName},#{password})
+    </insert>
+
+    <update id="update">
+        update login set logName = #{logName} , password = #{password} where userid = #{userid}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from login where userid = #{userid}
+    </delete>
+
+    <!-- selectOne -->
+    <select id="selectOne" parameterType="int" resultMap="login">
+      select
+        *
+      from login where userid = #{userid}
+    </select>
+
+
+
+</mapper>
