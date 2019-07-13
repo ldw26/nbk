@@ -10,25 +10,17 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @GetMapping(value = "/bank/findAll")
+    //登陆（查询这个用户） 根据用户名和密码查找
+    @RequestMapping(value = "bank/login/select")
     @ResponseBody
-    public void findAll(@RequestBody Login login){
-        System.out.println("111111"+login);
+    public String loginSelect(@RequestBody Login login){
 
-        Login login1 = loginService.selectOne(login.getUserId());
+        Login login1 = loginService.selectOneByUserNameAndPassword(login.getLogName(),login.getPassword());
 
-        System.out.println("2222222222222222222"+login1);
-    }
-
-    //登陆（查询这个用户）
-    @GetMapping(value = "/bank/login/select")
-    @ResponseBody
-    public Boolean loginSelect(@RequestBody Login login){
-        Login login1 = loginService.selectOne(login.getUserId());
         if (login1==null){
-            return Boolean.FALSE;
+            return Boolean.FALSE+"";
         }else {
-            return Boolean.TRUE;
+            return Boolean.TRUE+login1.getUserId().toString();
         }
     }
 

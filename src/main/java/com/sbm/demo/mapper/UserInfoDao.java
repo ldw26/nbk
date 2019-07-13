@@ -7,13 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserInfoDao {
 
     //TODO 增
-    public void insert(UserInfo userInfo);
+    public int insert(UserInfo userInfo);
 
     //TODO 改
-    public void update(UserInfo userInfo);
+    public int update(UserInfo userInfo);
 
     //TODO 删
-    public void delete(Integer id);
+    public int delete(Integer id);
 
     //TODO 根据ID查找
     public UserInfo selectOne(Integer id);

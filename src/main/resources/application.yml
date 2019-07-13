@@ -10,5 +10,5 @@ spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: 123456
-        url: jdbc:mysql://192.168.137.1:3306/youngfund?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        url: jdbc:mysql://192.168.137.1:3306/nbk?characterEncoding=utf8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root

@@ -13,7 +13,7 @@
         <result column="deposit" jdbcType="VARCHAR" property="deposit"/>
         <result column="sex" jdbcType="VARCHAR" property="sex"/>
         <result column="userName" jdbcType="INTEGER" property="userName"/>
-        <result column="adress" jdbcType="VARCHAR" property="adress"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
 
         <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber"/>
         <result column="profession" jdbcType="VARCHAR" property="profession"/>
@@ -21,12 +21,12 @@
     </resultMap>
 
     <insert id="insert">
-        insert into userinfo(userId,email,registerDate,deposit,sex,userName,adress,phoneNumber,profession)
-        values(#{userId},#{email},#{registerDate},#{deposit},#{sex},#{userName},#{adress},#{phoneNumber},#{profession})
+        insert into userinfo(userId,email,registerDate,deposit,sex,userName,address,phoneNumber,profession,password)
+        values(#{userId},#{email},#{registerDate},#{deposit},#{sex},#{userName},#{address},#{phoneNumber},#{profession},#{password})
     </insert>
 
     <update id="update">
-        update userinfo set email = #{email} ,registerDate = #{registerDate},deposit = #{deposit},sex = #{sex},userName = #{userName},adress = #{adress},
+        update userinfo set email = #{email} ,registerDate = #{registerDate},deposit = #{deposit},sex = #{sex},userName = #{userName},address = #{address},
         phoneNumber = #{phoneNumber},profession = #{profession} where userId = #{userId}
     </update>
 
@@ -36,9 +36,7 @@
 
     <!-- selectOne -->
     <select id="selectOne" parameterType="int" resultMap="userInfo">
-      select
-       *
-      from userinfo where userId = #{userId}
+      select * from userinfo where userId = #{userId}
     </select>
 
 </mapper>

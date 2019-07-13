@@ -17,49 +17,68 @@ public class UserInfoController {
     private LoginService loginService;
 
     //注册（也就是插入这个用户）   method = RequestMethod.POST
-    @GetMapping(value = "/bank/userinfo/insert")
+    @RequestMapping(value = "bank/userinfo/insert")
     @ResponseBody
-    public void loginInsert(@RequestBody UserInfo userInfo){
+    public Boolean loginInsert(@RequestBody UserInfo userInfo){
 
-        userInfoService.insert(userInfo);
+        int result = userInfoService.insert(userInfo);
 
         Login login = new Login();
         login.setUserId(userInfo.getUserId());
         login.setLogName(userInfo.getUserName());
         login.setPassword(userInfo.getPassword());
-        loginService.insert(login);
+        result = loginService.insert(login);
+
+        if (result>0){
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
     }
 
     //更新用户
-    @GetMapping(value = "/bank/userinfo/update")
+    @RequestMapping(value = "bank/userinfo/update")
     @ResponseBody
-    public void loginUpdate(@RequestBody UserInfo userInfo){
+    public Boolean loginUpdate(@RequestBody UserInfo userInfo){
 
-        userInfoService.update(userInfo);
+        int result =userInfoService.update(userInfo);
 
         Login login = new Login();
         login.setUserId(userInfo.getUserId());
         login.setLogName(userInfo.getUserName());
         login.setPassword(userInfo.getPassword());
-        loginService.update(login);
+
+        result = loginService.update(login);
+
+        if (result>0){
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
     }
 
-    //删除用户
-    @GetMapping(value = "/bank/userinfo/delete")
+    //删除用户（根据yonghuId删除用户）
+    @RequestMapping(value = "bank/userinfo/delete/{userId}")
     @ResponseBody
-    public void loginDelete(@RequestBody Integer userId){
+    public Boolean loginDelete(@PathVariable Integer userId){
 
-        userInfoService.delete(userId);
+        int result = userInfoService.delete(userId);
 
-        loginService.delete(userId);
+        result = loginService.delete(userId);
+
+        if (result>0){
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
     }
 
-    //查询用户
-    @GetMapping(value = "/bank/userinfo/select")
+    //查询用户(根据用户名Id查询这个用户)
+    @RequestMapping(value = "bank/userinfo/select/{userId}")
     @ResponseBody
-    public UserInfo loginSelect(@RequestBody Integer userId){
+    public UserInfo loginSelect(@PathVariable Integer userId){
 
-        return userInfoService.selectOne(userId);
+        UserInfo userInfo = userInfoService.selectOne(userId);
+        return userInfo;
     }
-
 }

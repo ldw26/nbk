@@ -5,14 +5,16 @@ import com.sbm.demo.mapper.UserFundDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserFundService {
 
     @Autowired
     private UserFundDao userFundDao;
 
-    public void insert(UserFund t) {
-        userFundDao.insert(t);
+    public int insert(UserFund t) {
+        return userFundDao.insert(t);
     }
 
     public void update(UserFund t) {
@@ -23,7 +25,7 @@ public class UserFundService {
         userFundDao.delete(id);
     }
 
-    public UserFund selectOne(Integer id) {
+    public List<UserFund> selectOne(Integer id) {
         return userFundDao.selectOne(id);
     }
 }

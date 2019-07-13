@@ -3,10 +3,12 @@ package com.sbm.demo.mapper;
 import com.sbm.demo.bean.UserFund;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserFundDao {
     //TODO 增
-    public void insert(UserFund userFund);
+    public int insert(UserFund userFund);
 
     //TODO 改
     public void update(UserFund userFund);
@@ -15,5 +17,5 @@ public interface UserFundDao {
     public void delete(Integer id);
 
     //TODO 根据ID查找
-    public UserFund selectOne(Integer id);
+    public List<UserFund> selectOne(Integer id);
 }

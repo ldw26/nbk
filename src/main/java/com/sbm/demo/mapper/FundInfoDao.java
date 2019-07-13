@@ -3,6 +3,8 @@ package com.sbm.demo.mapper;
 import com.sbm.demo.bean.FundInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface FundInfoDao {
 
@@ -17,4 +19,7 @@ public interface FundInfoDao {
 
     //TODO 根据ID查找
     public FundInfo selectOne(Integer id);
+
+    //TODO 查询所有的基金信息
+    public List<FundInfo> selectAll();
 }

@@ -9,6 +9,7 @@
         <result column="userId" jdbcType="INTEGER" property="userId"/>
         <result column="fundId" jdbcType="INTEGER" property="fundId"/>
         <result column="buyTime" jdbcType="VARCHAR" property="buyTime"/>
+        <result column="FundMoney" jdbcType="VARCHAR" property="FundMoney"/>
     </resultMap>
 
     <insert id="insert">

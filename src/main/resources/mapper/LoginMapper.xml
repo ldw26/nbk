@@ -6,30 +6,34 @@
 <mapper namespace="com.sbm.demo.mapper.LoginDao">
 
     <resultMap type="com.sbm.demo.bean.Login" id="login">
-        <result column="userid" jdbcType="INTEGER" property="userId"/>
+        <result column="userId" jdbcType="INTEGER" property="userId"/>
         <result column="logName" jdbcType="VARCHAR" property="logName"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
     </resultMap>
 
     <insert id="insert">
-        insert into login(userid,logName,password) values(#{userid},#{logName},#{password})
+        insert into login(userId,logName,password) values(#{userId},#{logName},#{password})
     </insert>
 
     <update id="update">
-        update login set logName = #{logName} , password = #{password} where userid = #{userid}
+        update login set logName = #{logName} , password = #{password} where userId = #{userId}
     </update>
 
     <delete id="delete" parameterType="int">
-        delete from login where userid = #{userid}
+        delete from login where userId = #{userId}
     </delete>
 
     <!-- selectOne -->
     <select id="selectOne" parameterType="int" resultMap="login">
       select
         *
-      from login where userid = #{userid}
+      from login where userId = #{userId}
     </select>
 
+    <!-- 根据用户名和密码查找 -->
+    <select id="selectOneByUserNameAndPassword" resultMap="login">
+      select  *  from user_user_t   where logName = #{0} and password=#{1}
+    </select>
 
 
 </mapper>

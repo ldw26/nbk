@@ -32,4 +32,10 @@
       from fundinfo  where fundId = #{fundId}
     </select>
 
+    <!-- selectAll -->
+    <select id="selectALl" resultMap="fundInfo">
+      select * from fundinfo
+    </select>
+
+
 </mapper>

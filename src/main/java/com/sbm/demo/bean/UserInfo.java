@@ -6,7 +6,7 @@ public class UserInfo {
     private String  registerDate;
     private String deposit;
     private String sex;
-    private String adress;
+    private String address;
     private String phoneNumber;
     private String userName;
     private String profession;
@@ -61,11 +61,11 @@ public class UserInfo {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAdress(String address) {
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -100,7 +100,7 @@ public class UserInfo {
                 ", registerDate='" + registerDate + '\'' +
                 ", deposit='" + deposit + '\'' +
                 ", sex='" + sex + '\'' +
-                ", adress='" + adress + '\'' +
+                ", adress='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", userName='" + userName + '\'' +
                 ", profession='" + profession + '\'' +

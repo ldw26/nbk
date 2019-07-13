@@ -12,19 +12,23 @@ public class LoginService {
     @Autowired
     private LoginDao loginDao;
 
-    public void insert(Login t) {
-        loginDao.insert(t);
+    public int insert(Login t) {
+        return loginDao.insert(t);
     }
 
-    public void update(Login t) {
-        loginDao.update(t);
+    public int update(Login t) {
+        return loginDao.update(t);
     }
 
-    public void delete(Integer id) {
-        loginDao.delete(id);
+    public int delete(Integer id) {
+        return  loginDao.delete(id);
     }
 
     public Login selectOne(Integer id) {
         return loginDao.selectOne(id);
+    }
+
+    public Login selectOneByUserNameAndPassword(String userName,String password){
+        return loginDao.selectOneByUserNameAndPassword(userName,password);
     }
 }

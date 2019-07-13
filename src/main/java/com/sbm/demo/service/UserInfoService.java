@@ -11,16 +11,16 @@ public class UserInfoService {
     @Autowired
     private UserInfoDao userInfoDao;
 
-    public void insert(UserInfo t) {
-        userInfoDao.insert(t);
+    public int insert(UserInfo t) {
+        return userInfoDao.insert(t);
     }
 
-    public void update(UserInfo t) {
-        userInfoDao.update(t);
+    public int update(UserInfo t) {
+        return userInfoDao.update(t);
     }
 
-    public void delete(Integer id) {
-        userInfoDao.delete(id);
+    public int delete(Integer id) {
+        return userInfoDao.delete(id);
     }
 
     public UserInfo selectOne(Integer id) {

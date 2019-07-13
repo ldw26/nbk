@@ -5,6 +5,15 @@ public class FundInfo {
     private String fundName;
     private String dailyMoney;
     private String rate;
+    private String lock;
+
+    public String getLock() {
+        return lock;
+    }
+
+    public void setLock(String lock) {
+        this.lock = lock;
+    }
 
     public Integer getFundId() {
         return fundId;

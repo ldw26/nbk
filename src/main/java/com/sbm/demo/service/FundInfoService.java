@@ -5,6 +5,8 @@ import com.sbm.demo.mapper.FundInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FundInfoService {
 
@@ -25,5 +27,9 @@ public class FundInfoService {
 
     public FundInfo selectOne(Integer id) {
         return fundInfoDao.selectOne(id);
+    }
+
+    public List<FundInfo> selectAll(){
+        return fundInfoDao.selectAll();
     }
 }
