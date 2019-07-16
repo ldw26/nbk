@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbm.demo.mapper.FundViewDao">
+
+    <resultMap type="com.sbm.demo.bean.FundView" id="fundView">
+
+        <result column="fundId" jdbcType="INTEGER" property="fundId"/>
+        <result column="fundName" jdbcType="VARCHAR" property="fundName"/>
+        <result column="dailyMoney" jdbcType="VARCHAR" property="dailyMoney"/>
+        <result column="rate" jdbcType="VARCHAR" property="rate"/>
+        <result column="lock" jdbcType="VARCHAR" property="lock"/>
+
+        <result column="fundPeople" jdbcType="VARCHAR" property="fundPeople"/>
+        <result column="fundLoop" jdbcType="VARCHAR" property="fundLoop"/>
+    </resultMap>
+
+    <!-- selectAll  视图全部的查询 -->
+    <select id="selectAll" resultMap="fundView">
+      select * from fundview
+    </select>
+
+
+</mapper>

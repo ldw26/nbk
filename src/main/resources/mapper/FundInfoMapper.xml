@@ -11,29 +11,27 @@
         <result column="fundName" jdbcType="VARCHAR" property="fundName"/>
         <result column="dailyMoney" jdbcType="VARCHAR" property="dailyMoney"/>
         <result column="rate" jdbcType="VARCHAR" property="rate"/>
+        <result column="lock" jdbcType="VARCHAR" property="lock"/>
+
+        <result column="fundIntroduction" jdbcType="VARCHAR" property="fundIntroduction"/>
     </resultMap>
 
-    <insert id="insert">
-        insert into fundinfo(fundId,fundName,dailyMoney,rate) values(#{fundId},#{fundName},#{dailyMoney},#{rate})
-    </insert>
 
     <update id="update">
-        update fundinfo set fundName = #{fundName} , dailyMoney = #{dailyMoney}, rate = #{rate} where fundId = #{fundId}
+        update fundinfo set fundName = #{fundName}, dailyMoney = #{dailyMoney}, rate = #{rate}, lock = #{lock}where fundId = #{fundId}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete">
         delete from fundinfo where fundId = #{fundId}
     </delete>
 
     <!-- selectOne -->
-    <select id="selectOne" parameterType="int" resultMap="fundInfo">
-      select
-       *
-      from fundinfo  where fundId = #{fundId}
+    <select id="selectOne" resultMap="fundInfo">
+      select * from fundinfo  where fundId = #{fundId}
     </select>
 
     <!-- selectAll -->
-    <select id="selectALl" resultMap="fundInfo">
+    <select id="selectAll" resultMap="fundInfo">
       select * from fundinfo
     </select>
 

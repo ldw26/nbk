@@ -3,6 +3,7 @@ package com.sbm.demo.mapper;
 
 import com.sbm.demo.bean.Login;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface LoginDao {
@@ -20,5 +21,8 @@ public interface LoginDao {
     public Login selectOne(Integer id);
 
     //TODO 根据用户名和密码查找 (登陆)
-    public Login selectOneByUserNameAndPassword(String userName,String password);
+    public Login selectOneByUserNameAndPassword(@Param("logName") String userName,@Param("password") String password);
+
+    //TODO 根据用户名删除用户
+    public int deleteByUserName(@Param("logName") String logName);
 }

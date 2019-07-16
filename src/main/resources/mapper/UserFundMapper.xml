@@ -9,26 +9,42 @@
         <result column="userId" jdbcType="INTEGER" property="userId"/>
         <result column="fundId" jdbcType="INTEGER" property="fundId"/>
         <result column="buyTime" jdbcType="VARCHAR" property="buyTime"/>
-        <result column="FundMoney" jdbcType="VARCHAR" property="FundMoney"/>
+        <result column="fundMoney" jdbcType="VARCHAR" property="fundMoney"/>
     </resultMap>
 
+    <resultMap type="com.sbm.demo.bean.UserFundList" id="userFundList">
+        <result column="fundId" jdbcType="INTEGER" property="fundId"/>
+        <result column="fundName" jdbcType="INTEGER" property="fundName"/>
+        <result column="fundMoney" jdbcType="VARCHAR" property="fundMoney"/>
+
+        <result column="rate" jdbcType="VARCHAR" property="rate"/>
+        <result column="buyTime" jdbcType="VARCHAR" property="buyTime"/>
+    </resultMap>
+
+    <!--用户新增基金-->
     <insert id="insert">
-        insert into userfund(userId,fundId,buyTime) values(#{userId},#{fundId},#{buyTime})
+        insert into userfund(userId,fundId,buyTime,fundMoney) values(#{userId},#{fundId},#{buyTime},#{fundMoney})
     </insert>
 
-    <update id="update">
-        update userfund set fundId = #{fundId} , buyTime = #{buyTime} where userId = #{userId}
+    <!--只更新基金数-->
+    <update id="updateFundMoney">
+        update userfund set fundMoney = #{fundMoney} where userId = #{userId} and fundId = #{fundId}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" >
         delete from userfund where userId = #{userId}
     </delete>
 
-    <!-- selectOne -->
-    <select id="selectOne" parameterType="int" resultMap="userFund">
-      select
-        *
-      from userfund where userId = #{userId}
+    <!--根据userId和fundId查看是否购买某项基金-->
+    <!-- selectOneByUserIdAndFundId -->
+    <select id="selectOneByUserIdAndFundId" resultMap="userFund">
+      select * from userfund where userId = #{userId} and fundId = #{fundId}
+    </select>
+
+    <!--根据ID查询基金名称及其购买金钱数-->
+    <select id="selectFundMoneyAndName"  resultMap="userFundList">
+      select a.fundId,a.fundMoney,a.buyTime,b.fundName,b.rate FROM userfund a
+          LEFT JOIN fundinfo b on a.fundId = b.fundId where a.userId =#{userId};
     </select>
 
 </mapper>

@@ -4,18 +4,17 @@ import com.sbm.demo.bean.FundInfo;
 import com.sbm.demo.mapper.FundInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class FundInfoService {
 
     @Autowired
     private FundInfoDao fundInfoDao;
 
-    public void insert(FundInfo t) {
-        fundInfoDao.insert(t);
-    }
 
     public void update(FundInfo t) {
         fundInfoDao.update(t);

@@ -1,28 +1,30 @@
 package com.sbm.demo.bean;
 
-import java.util.Map;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+
+@ApiModel(value = "用户-基金类", description = "用户记录用户及其用户购买基金的信息")
 public class UserFund {
+
+    @ApiModelProperty(value = "用户Id", name = "userId", dataType = "Integer", required = true, example = "1")
     private Integer userId;
+
+    @ApiModelProperty(value = "基金Id", name = "fundId", dataType = "Integer", required = true, example = "1001")
     private Integer fundId;
+
+    @ApiModelProperty(value = "用户购买基金的时间", name = "buyTime", dataType = "String", example = "20190714")
     private String buyTime;
-    private String FundMoney;
-    private Map<String,String> HashMap;
+
+    @ApiModelProperty(value = "用户基金金额", name = "fundMoney", dataType = "String", required = true, example = "500")
+    private String fundMoney;
 
     public String getFundMoney() {
-        return FundMoney;
+        return fundMoney;
     }
 
     public void setFundMoney(String fundMoney) {
-        FundMoney = fundMoney;
-    }
-
-    public Map<String, String> getHashMap() {
-        return HashMap;
-    }
-
-    public void setHashMap(Map<String, String> hashMap) {
-        HashMap = hashMap;
+        this.fundMoney = fundMoney;
     }
 
     public Integer getUserId() {
@@ -55,6 +57,7 @@ public class UserFund {
                 "userId=" + userId +
                 ", fundId=" + fundId +
                 ", buyTime='" + buyTime + '\'' +
+                ", fundMoney='" + fundMoney + '\'' +
                 '}';
     }
 }

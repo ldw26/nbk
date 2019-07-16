@@ -15,8 +15,9 @@
         insert into login(userId,logName,password) values(#{userId},#{logName},#{password})
     </insert>
 
+    <!--只能更新用户密码-->
     <update id="update">
-        update login set logName = #{logName} , password = #{password} where userId = #{userId}
+        update login set password = #{password} where userId = #{userId}
     </update>
 
     <delete id="delete" parameterType="int">
@@ -32,8 +33,11 @@
 
     <!-- 根据用户名和密码查找 -->
     <select id="selectOneByUserNameAndPassword" resultMap="login">
-      select  *  from user_user_t   where logName = #{0} and password=#{1}
+      select  *  from login where logName = #{logName} and password=#{password}
     </select>
 
-
+    <!--根据用户名删除用户-->
+    <delete id="deleteByUserName" >
+        delete from login where logName = #{logName}
+    </delete>
 </mapper>

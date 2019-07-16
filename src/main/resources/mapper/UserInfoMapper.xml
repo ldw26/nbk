@@ -17,26 +17,79 @@
 
         <result column="phoneNumber" jdbcType="VARCHAR" property="phoneNumber"/>
         <result column="profession" jdbcType="VARCHAR" property="profession"/>
+        <result column="idCard" jdbcType="VARCHAR" property="idCard"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
 
     </resultMap>
 
     <insert id="insert">
-        insert into userinfo(userId,email,registerDate,deposit,sex,userName,address,phoneNumber,profession,password)
-        values(#{userId},#{email},#{registerDate},#{deposit},#{sex},#{userName},#{address},#{phoneNumber},#{profession},#{password})
+        insert into userinfo(email,registerDate,sex,userName,address,phoneNumber,profession,password,idCard,name)
+        values(#{email},#{registerDate},#{sex},#{userName},#{address},#{phoneNumber},#{profession},#{password},#{idCard},#{name})
     </insert>
 
+    <!--更新用户的一些基本信息-->
     <update id="update">
-        update userinfo set email = #{email} ,registerDate = #{registerDate},deposit = #{deposit},sex = #{sex},userName = #{userName},address = #{address},
-        phoneNumber = #{phoneNumber},profession = #{profession} where userId = #{userId}
+
+        update userinfo
+        <set>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phoneNumber = #{phoneNumber},
+            </if>
+
+            <if test="profession != null and profession != ''">
+                profession = #{profession},
+            </if>
+
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+
+            <if test="idCard != null and idCard != ''">
+                idCard = #{idCard},
+            </if>
+
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+
+        </set>
+        where userId = #{userId}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <!--用户存款的修改-->
+    <update id="userDepositChange">
+        update userinfo set deposit = #{deposit}  where userId = #{userId}
+    </update>
+
+    <delete id="delete">
         delete from userinfo where userId = #{userId}
     </delete>
 
     <!-- selectOne -->
-    <select id="selectOne" parameterType="int" resultMap="userInfo">
-      select * from userinfo where userId = #{userId}
+    <select id="selectOne" resultMap="userInfo">
+      select email,registerDate,deposit,sex,userName,address,phoneNumber,profession,idCard,name from userinfo where userId = #{userId}
     </select>
+
+    <!-- selectByUserName -->
+    <select id="selectByUserName" resultMap="userInfo">
+      select * from userinfo where userName = #{userName}
+    </select>
+
+    <!--根据用户名删除用户-->
+    <delete id="deleteByUserName">
+        delete from userinfo where userName = #{userName}
+    </delete>
 
 </mapper>
